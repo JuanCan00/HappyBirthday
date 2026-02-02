@@ -61,7 +61,7 @@ body::before {
 /* Tarjeta tipo glass */
 .card {
     width: 100%;
-    max-width: 1900px; 
+    max-width: 2500px; 
     padding: 3rem 2.5rem;
     background: rgba(15, 23, 42, 0.75);       /* azul noche translúcido */
     backdrop-filter: blur(12px);
