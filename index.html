@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Feliz cumpleaños interactivo</title>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Canvas de fuegos -->
+    <canvas id="canvasFuegos"></canvas>
+
+    <!-- CINTA DE IMÁGENES DE FONDO -->
+    <div class="cinta-wrapper">
+        <div class="cinta">
+            <!-- Repite tus imágenes dos veces para que el loop se vea continuo -->
+            <img src="img/foto1.jpeg" alt="foto 1">
+            <img src="img/foto2.jpeg" alt="foto 2">
+            <img src="img/foto3.jpeg" alt="foto 3">
+            <img src="img/foto4.jpeg" alt="foto 4">
+            <img src="img/foto5.jpeg" alt="foto 5">
+            <img src="img/foto6.jpeg" alt="foto 6">
+            <img src="img/foto7.jpeg" alt="foto 7">
+            <img src="img/foto8.jpeg" alt="foto 8">
+            <img src="img/foto9.jpeg" alt="foto 9">
+            <img src="img/foto10.jpeg" alt="foto 10">
+
+            <!-- segunda tanda para efecto continuo -->
+            <img src="img/foto1.jpeg" alt="foto 1">
+            <img src="img/foto2.jpeg" alt="foto 2">
+            <img src="img/foto3.jpeg" alt="foto 3">
+            <img src="img/foto4.jpeg" alt="foto 4">
+            <img src="img/foto5.jpeg" alt="foto 5">
+            <img src="img/foto6.jpeg" alt="foto 6">
+            <img src="img/foto7.jpeg" alt="foto 7">
+            <img src="img/foto8.jpeg" alt="foto 8">
+            <img src="img/foto9.jpeg" alt="foto 9">
+            <img src="img/foto10.jpeg" alt="foto 10">
+        </div>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="contenedor">
+        <div class="card">
+            <h1 class="titulo-colombia">
+                ¿Sera que hoy si toca torta? 🎂
+            </h1>
+
+            <br>
+
+            <p class="subtitulo">
+                Escribe el día y el mes y veamos si hoy es tu gran día.
+            </p>
+
+            <div class="form-line">
+                <div class="campo">
+                    <label for="dia">Día</label>
+                    <input type="number" id="dia" min="1" max="31">
+                </div>
+
+                <div class="campo">
+                    <label for="mes">Mes</label>
+                    <input type="number" id="mes" min="1" max="12">
+                </div>
+
+                <button id="btnCelebrar" class="btn-principal">Celebrar</button>
+            </div>
+
+            <div id="mensaje"></div>
+        </div>
+    </div>
+
+    <!-- Audios -->
+    <audio id="audioPregunta" src="audio/pregunta.mp3"></audio>
+    <audio id="audioFuegos" src="audio/fuegos.mp3"></audio>
+
+    <!-- Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>

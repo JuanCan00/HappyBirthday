@@ -1,0 +1,384 @@
+/* Fondo general y layout a pantalla completa */
+body {
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #f1f5f9; /* texto base, blanco frío */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    /* Imagen de fondo */
+    background-image: url("../img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    /* Centrado tipo landing */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Capa oscura encima de la imagen para mejorar legibilidad */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35); /* antes 0.6 */
+    z-index: -2;
+}
+
+/* Canvas de fuegos artificiales encima del fondo pero debajo del contenido */
+#canvasFuegos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background: transparent;
+}
+
+/* Contenedor principal: parte superior de la pantalla */
+.contenedor {
+    position: fixed;
+    top: 5vh;                  /* tarjeta en la mitad superior */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Tarjeta tipo glass */
+.card {
+    width: 100%;
+    max-width: 1700px; 
+    padding: 3rem 2.5rem;
+    background: rgba(15, 23, 42, 0.75);       /* azul noche translúcido */
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Título principal */
+h1 {
+    font-family: "Pacifico", cursive;
+    font-size: clamp(2.3rem, 3.6vw, 3.4rem);
+    margin: 0 0 1rem;
+    letter-spacing: 0.4px;
+
+    width: 100%;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.titulo-colombia {
+    background: linear-gradient(
+        90deg,
+        #ffe75b 0%,
+        #ffe75b 33%,
+        #3b82f6 33%,
+        #3b82f6 66%,
+        #fb4b4b 66%,
+        #fb4b4b 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
+   
+    text-shadow:
+        0 0 4px rgba(255, 231, 91, 0.35),
+        0 0 8px rgba(59, 130, 246, 0.35),
+        0 0 8px rgba(251, 75, 75, 0.35);
+
+    filter: contrast(1.15);
+}
+
+/* Subtítulo */
+.subtitulo {
+    font-size: clamp(1rem, 2.3vw, 1.25rem);
+    font-weight: 300;
+    margin: 0 0 2rem;
+    color: #cbd5e1;
+    letter-spacing: 0.6px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Línea del formulario */
+.form-line {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+/* Grupo campo (label + input) */
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centrado perfecto */
+    text-align: center;    /* para el label */
+}
+
+/* Label de los inputs */
+.campo label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+    color: #93c5fd; /* azul claro */
+}
+
+/* Input de día y mes */
+.campo input {
+    width: 90px;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+    border-radius: 999px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #111827;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 2px rgba(96, 165, 250, 0.4);
+}
+
+/* Botón principal */
+.btn-principal {
+    padding: 0.85rem 1.9rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+    color: #f8fafc;
+    font-weight: 600;
+    font-size: 1rem;
+
+    box-shadow:
+        0 10px 30px rgba(37, 99, 235, 0.45),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.15);
+
+    transition: transform 0.15s ease,
+                box-shadow 0.15s ease,
+                filter 0.15s ease;
+}
+
+.btn-principal:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow:
+        0 14px 35px rgba(37, 99, 235, 0.6);
+}
+
+/* Mensaje de resultado (modo normal dentro de la tarjeta) */
+#mensaje {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    min-height: 60px;
+    color: #e5e7eb;
+}
+
+#mensaje strong {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #60a5fa;
+    text-shadow:
+        0 2px 14px rgba(96, 165, 250, 0.5);
+}
+
+/* Cuando SÍ es cumpleaños, el mensaje ocupa casi toda la pantalla */
+#mensaje.mensaje-cumple {
+    position: fixed;
+    inset: 0;                    /* top:0, right:0, bottom:0, left:0 */
+    margin: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+    text-align: center;
+
+    z-index: 2;                  /* por encima de la card y las fotos */
+    pointer-events: none;        /* no bloquea clics */
+}
+
+/* Título gigante del mensaje de cumpleaños */
+#mensaje.mensaje-cumple strong {
+    display: block;
+    font-size: clamp(3rem, 7vw, 5rem);
+    margin-bottom: 1rem;
+
+    color: #f9fafb;
+    text-shadow:
+        0 0 20px rgba(59, 130, 246, 0.9),
+        0 0 40px rgba(37, 99, 235, 0.7);
+
+    /* Animación de entrada + pulse continuo */
+    animation:
+        crecer 0.6s ease-out forwards,
+        pulse 2.2s ease-in-out infinite;
+}
+
+/* Párrafos del mensaje grande */
+#mensaje.mensaje-cumple p {
+    max-width: 700px;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    line-height: 1.5;
+    color: #e5e7eb;
+    text-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+}
+
+/* Keyframes de crecimiento (reutilizado para el título gigante) */
+@keyframes crecer {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Ajuste en pantallas pequeñas (estructura general) */
+@media (max-width: 600px) {
+    .card {
+        padding: 2.2rem 1.8rem;
+    }
+
+    .form-line {
+        align-items: stretch;
+    }
+
+    .btn-principal {
+        width: 100%;
+        margin-top: 0.5rem;
+        justify-self: center;
+    }
+
+    .contenedor {
+        top: 2vh;
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* CINTA DE IMÁGENES: mitad inferior de la pantalla */
+.cinta-wrapper {
+    position: fixed;
+    left: 0;
+    top: 50vh;         /* comienza en la mitad de la pantalla */
+    width: 100%;
+    height: 50vh;      /* ocupa solo la mitad inferior */
+    transform: none;
+    overflow: hidden;
+
+    z-index: 0;        /* detrás de la card */
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+.cinta-wrapper.cinta-activa {
+    opacity: 1;
+}
+
+/* Cinta deslizándose de derecha a izquierda */
+.cinta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;                        /* espacio entre imágenes */
+    height: 100%;
+    animation: cinta-desplazar 80s linear infinite;
+    will-change: transform;
+
+    /* Animación pausada por defecto */
+    animation-play-state: paused;
+}
+
+/* Cuando la cinta está activa, la animación corre */
+.cinta-wrapper.cinta-activa .cinta {
+    animation-play-state: running;
+}
+
+.cinta img {
+    height: 80%;                      /* ocupan gran parte de la mitad inferior */
+    max-height: 100%;
+    width: min(400px, 65vw);          /* ancho fijo pero algo flexible */
+    border-radius: 24px;
+    flex-shrink: 0;
+    opacity: 0.95;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+    object-fit: cover;                /* recorte moderado, sin deformar */
+    object-position: center top;      /* prioriza la parte superior (caras) */
+}
+
+/* Animación de derecha a izquierda */
+@keyframes cinta-desplazar {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Ajuste en pantallas pequeñas (cinta) */
+@media (max-width: 600px) {
+    .cinta img {
+        height: 70%;
+    }
+}
+
+/* Cuando es cumpleaños, ocultamos el contenido de la tarjeta */
+.modo-cumple .card {
+    visibility: hidden;   /* no se ve */
+}
+
+/* Pero el mensaje gigante sigue visible */
+.modo-cumple #mensaje.mensaje-cumple {
+    visibility: visible;
+}
+
+/* Animación tipo pulse (latido suave) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
